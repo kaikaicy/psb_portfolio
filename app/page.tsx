@@ -6,10 +6,11 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen flex flex-col">
       <Navigation />
       <Hero />
       <About />
@@ -18,6 +19,7 @@ export default function Home() {
       <Projects />
       <Skills />
       <Contact />
+      <Footer />
     </main>
   );
 }
