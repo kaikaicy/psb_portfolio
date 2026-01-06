@@ -31,66 +31,71 @@ export default function Contact() {
 
         {/* Contact Information Cards - Horizontal Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          <motion.a
-            href="mailto:kikaybenalla5@gmail.com"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col items-center p-5 bg-gray-800 rounded-lg border-2 border-cyan-400/30 hover:border-cyan-400 hover:shadow-xl transition-all duration-300 group"
-          >
-            <div className="p-3 bg-cyan-400/10 rounded-lg group-hover:bg-cyan-400/20 transition-colors mb-3">
-              <FiMail className="text-cyan-400 text-2xl group-hover:scale-110 transition-transform" />
-            </div>
-            <p className="font-semibold text-white mb-1">Email</p>
-            <p className="text-gray-300 text-sm text-center">kikaybenalla5@gmail.com</p>
-          </motion.a>
+          {[
+            { 
+              href: "mailto:kikaybenalla5@gmail.com", 
+              icon: FiMail, 
+              title: "Email", 
+              text: "kikaybenalla5@gmail.com",
+              delay: 0,
+              isLink: true
+            },
+            { 
+              href: "tel:09670494464", 
+              icon: FiPhone, 
+              title: "Phone", 
+              text: "09670494464",
+              delay: 0.1,
+              isLink: true
+            },
+            { 
+              href: "https://www.linkedin.com/in/precy-benalla/", 
+              icon: FiLinkedin, 
+              title: "LinkedIn", 
+              text: "linkedin.com/in/precy-benalla",
+              delay: 0.2,
+              isLink: true,
+              external: true
+            },
+            { 
+              href: "#", 
+              icon: FiMapPin, 
+              title: "Location", 
+              text: "Daet, Camarines Norte, 4600",
+              delay: 0.3,
+              isLink: false
+            }
+          ].map((contact, index) => {
+            const Component = contact.isLink ? motion.a : motion.div;
+            const props = contact.isLink ? {
+              href: contact.href,
+              ...(contact.external && { target: "_blank", rel: "noopener noreferrer" })
+            } : {};
 
-          <motion.a
-            href="tel:09670494464"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex flex-col items-center p-5 bg-gray-800 rounded-lg border-2 border-cyan-400/30 hover:border-cyan-400 hover:shadow-xl transition-all duration-300 group"
-          >
-            <div className="p-3 bg-cyan-400/10 rounded-lg group-hover:bg-cyan-400/20 transition-colors mb-3">
-              <FiPhone className="text-cyan-400 text-2xl group-hover:scale-110 transition-transform" />
-            </div>
-            <p className="font-semibold text-white mb-1">Phone</p>
-            <p className="text-gray-300 text-sm text-center">09670494464</p>
-          </motion.a>
-
-          <motion.a
-            href="https://www.linkedin.com/in/precy-benalla/"
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col items-center p-5 bg-gray-800 rounded-lg border-2 border-cyan-400/30 hover:border-cyan-400 hover:shadow-xl transition-all duration-300 group"
-          >
-            <div className="p-3 bg-cyan-400/10 rounded-lg group-hover:bg-cyan-400/20 transition-colors mb-3">
-              <FiLinkedin className="text-cyan-400 text-2xl group-hover:scale-110 transition-transform" />
-            </div>
-            <p className="font-semibold text-white mb-1">LinkedIn</p>
-            <p className="text-gray-300 text-sm text-center truncate w-full">linkedin.com/in/precy-benalla</p>
-          </motion.a>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col items-center p-5 bg-gray-800 rounded-lg border-2 border-cyan-400/30"
-          >
-            <div className="p-3 bg-cyan-400/10 rounded-lg mb-3">
-              <FiMapPin className="text-cyan-400 text-2xl" />
-            </div>
-            <p className="font-semibold text-white mb-1">Location</p>
-            <p className="text-gray-300 text-sm text-center">Daet, Camarines Norte, 4600</p>
-          </motion.div>
+            return (
+              <Component
+                key={index}
+                {...props}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.4, 
+                  delay: contact.delay
+                }}
+                whileHover={{ y: -2 }}
+                className={`flex flex-col items-center p-5 bg-gray-800 rounded-lg border-2 border-cyan-400/30 hover:border-cyan-400 hover:shadow-lg transition-all duration-300 group ${contact.isLink ? 'cursor-pointer' : 'cursor-default'}`}
+              >
+                <div className="p-3 bg-cyan-400/10 rounded-lg group-hover:bg-cyan-400/20 transition-colors mb-3">
+                  <contact.icon className="text-cyan-400 text-2xl group-hover:scale-105 transition-transform" />
+                </div>
+                <p className="font-semibold text-white mb-1 group-hover:text-cyan-400 transition-colors">
+                  {contact.title}
+                </p>
+                <p className="text-gray-300 text-sm text-center truncate w-full">{contact.text}</p>
+              </Component>
+            );
+          })}
         </div>
       </div>
     </section>

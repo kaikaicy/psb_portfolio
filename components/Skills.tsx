@@ -54,13 +54,20 @@ export default function Skills() {
           {allSkills.map((skill, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="flex flex-col items-center justify-center p-5 bg-gray-800 rounded-lg border-2 border-cyan-400/30 hover:border-cyan-400 hover:shadow-xl transition-all duration-300 group"
+              transition={{ 
+                duration: 0.4, 
+                delay: index * 0.03
+              }}
+              whileHover={{ 
+                y: -4,
+                transition: { duration: 0.2 }
+              }}
+              className="flex flex-col items-center justify-center p-5 bg-gray-800 rounded-lg border-2 border-cyan-400/30 hover:border-cyan-400 hover:shadow-lg transition-all duration-300 group cursor-default"
             >
-              <div className="relative w-14 h-14 mb-3 group-hover:scale-110 transition-transform">
+              <div className="relative w-14 h-14 mb-3 group-hover:scale-105 transition-transform">
                 <Image
                   src={skill.icon}
                   alt={skill.name}
@@ -68,7 +75,7 @@ export default function Skills() {
                   className="object-contain"
                 />
               </div>
-              <span className="text-xs text-center text-gray-300 font-medium leading-tight">
+              <span className="text-xs text-center text-gray-300 font-medium leading-tight group-hover:text-cyan-400 transition-colors">
                 {skill.name}
               </span>
             </motion.div>
@@ -99,11 +106,22 @@ export default function Skills() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gray-800 rounded-lg border-2 border-cyan-400/30 hover:border-cyan-400 p-6 text-center min-w-[200px] hover:shadow-xl transition-all duration-300"
+                transition={{ 
+                  duration: 0.4, 
+                  delay: index * 0.1
+                }}
+                whileHover={{ 
+                  y: -4,
+                  transition: { duration: 0.2 }
+                }}
+                className="bg-gray-800 rounded-lg border-2 border-cyan-400/30 hover:border-cyan-400 p-6 text-center min-w-[200px] hover:shadow-lg transition-all duration-300 cursor-default"
               >
-                <p className="text-lg font-semibold text-white mb-2">{lang.name}</p>
-                <p className="text-gray-300 text-sm">{lang.level}</p>
+                <p className="text-lg font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                  {lang.name}
+                </p>
+                <p className="text-gray-300 text-sm">
+                  {lang.level}
+                </p>
               </motion.div>
             ))}
           </div>

@@ -29,18 +29,24 @@ export default function Testimonials() {
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white rounded-lg shadow-md p-8 hover:shadow-lg transition-shadow"
+              transition={{ 
+                duration: 0.4, 
+                delay: index * 0.1
+              }}
+              whileHover={{ y: -2 }}
+              className="bg-white rounded-lg shadow-md p-8 hover:shadow-lg transition-all duration-300 border-2 border-transparent hover:border-cyan-400/30"
             >
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-16 h-16 bg-cyan-400 rounded-full flex items-center justify-center text-[#0a1128] text-2xl font-bold">
                   {testimonial.initial}
                 </div>
                 <div className="flex-1 flex flex-col">
-                  <p className="text-gray-600 leading-relaxed mb-4 flex-grow">{testimonial.text}</p>
+                  <p className="text-gray-600 leading-relaxed mb-4 flex-grow">
+                    {testimonial.text}
+                  </p>
                   <div className="mt-auto">
                     <p className="font-semibold text-gray-900">{testimonial.author}</p>
                     <p className="text-gray-600 text-sm">{testimonial.role}</p>

@@ -67,17 +67,21 @@ export default function Education() {
               {education.map((edu, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="relative pl-20 md:pl-28"
                 >
                   {/* Timeline Marker */}
                   <div className="absolute left-4 md:left-8 top-6 w-4 h-4 bg-cyan-400 rounded-full border-4 border-[#0a1128] z-10"></div>
 
                   {/* Card */}
-                  <div className="bg-white rounded-lg border-2 border-cyan-400 p-6 shadow-lg">
+                  <motion.div
+                    whileHover={{ x: 4 }}
+                    transition={{ duration: 0.2 }}
+                    className="bg-white rounded-lg border-2 border-cyan-400 p-6 shadow-lg hover:shadow-lg transition-all duration-300"
+                  >
                     {/* Period Tag */}
                     <span className="inline-block px-3 py-1 bg-cyan-400/20 text-[#0a1128] text-sm font-semibold rounded mb-4">
                       {edu.period}
@@ -118,7 +122,7 @@ export default function Education() {
                         })}
                       </div>
                     )}
-                  </div>
+                  </motion.div>
                 </motion.div>
               ))}
             </div>

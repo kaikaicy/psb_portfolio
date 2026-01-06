@@ -63,7 +63,7 @@ export default function Navigation() {
             <a
               href="#home"
               onClick={(e) => handleNavClick(e, "#home")}
-              className="text-2xl font-bold text-white tracking-wide"
+              className="text-2xl font-bold text-white tracking-wide hover:text-cyan-400 transition-colors"
             >
               Precy.
             </a>
@@ -85,7 +85,12 @@ export default function Navigation() {
                 >
                   {item.name}
                   {isActive && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-cyan-400" />
+                    <motion.span
+                      layoutId="activeSection"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-cyan-400"
+                      initial={false}
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
                   )}
                 </a>
               );
@@ -121,10 +126,11 @@ export default function Navigation() {
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="md:hidden bg-[#0a1128]/95 backdrop-blur-md border-t border-cyan-400/20"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.3 }}
+          className="md:hidden bg-[#0a1128]/95 backdrop-blur-md border-t border-cyan-400/20 overflow-hidden"
         >
           <div className="px-4 pt-2 pb-4 space-y-2">
             {navItems.map((item) => (

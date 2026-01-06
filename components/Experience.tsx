@@ -40,13 +40,20 @@ export default function Certifications() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-gray-800 rounded-lg border-2 border-cyan-400/30 overflow-hidden hover:border-cyan-400 hover:shadow-xl transition-all duration-300 group"
+              transition={{ 
+                duration: 0.4, 
+                delay: index * 0.1
+              }}
+              whileHover={{ 
+                y: -2,
+                transition: { duration: 0.2 }
+              }}
+              className="bg-gray-800 rounded-lg border-2 border-cyan-400/30 overflow-hidden hover:border-cyan-400 hover:shadow-lg transition-all duration-300 group"
             >
               <div className="flex flex-col">
                 {/* Image Section - On Top */}
                 {cert.image && (
-                  <div className="relative w-full h-64 bg-gray-700">
+                  <div className="relative w-full h-64 bg-gray-700 overflow-hidden">
                     <Image
                       src={cert.image}
                       alt={cert.title}

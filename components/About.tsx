@@ -62,35 +62,33 @@ export default function About() {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
               className="grid grid-cols-1 md:grid-cols-3 gap-6"
             >
-              <div className="bg-gray-800 rounded-lg border-2 border-cyan-400/30 p-6">
-                <div className="p-3 bg-cyan-400/10 rounded-lg w-fit mb-4">
-                  <FiMapPin className="text-cyan-400 text-2xl" />
-                </div>
-                <h3 className="font-semibold text-white text-lg mb-1">Location</h3>
-                <p className="text-gray-300">Daet, Camarines Norte</p>
-              </div>
-
-              <div className="bg-gray-800 rounded-lg border-2 border-cyan-400/30 p-6">
-                <div className="p-3 bg-cyan-400/10 rounded-lg w-fit mb-4">
-                  <FiCalendar className="text-cyan-400 text-2xl" />
-                </div>
-                <h3 className="font-semibold text-white text-lg mb-1">Expected Graduation</h3>
-                <p className="text-gray-300">June 2026</p>
-              </div>
-
-              <div className="bg-gray-800 rounded-lg border-2 border-cyan-400/30 p-6">
-                <div className="p-3 bg-cyan-400/10 rounded-lg w-fit mb-4">
-                  <FiPhone className="text-cyan-400 text-2xl" />
-                </div>
-                <h3 className="font-semibold text-white text-lg mb-1">Phone</h3>
-                <p className="text-gray-300">09670494464</p>
-              </div>
+              {[
+                { icon: FiMapPin, title: "Location", text: "Daet, Camarines Norte" },
+                { icon: FiCalendar, title: "Expected Graduation", text: "June 2026" },
+                { icon: FiPhone, title: "Phone", text: "09670494464" }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                  whileHover={{ y: -2 }}
+                  className="bg-gray-800 rounded-lg border-2 border-cyan-400/30 p-6 hover:border-cyan-400 hover:shadow-lg transition-all duration-300 cursor-default"
+                >
+                  <div className="p-3 bg-cyan-400/10 rounded-lg w-fit mb-4">
+                    <item.icon className="text-cyan-400 text-2xl" />
+                  </div>
+                  <h3 className="font-semibold text-white text-lg mb-1">{item.title}</h3>
+                  <p className="text-gray-300">{item.text}</p>
+                </motion.div>
+              ))}
             </motion.div>
           </motion.div>
         </div>
